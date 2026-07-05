@@ -1,0 +1,342 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--surface-0); color: var(--text-primary); }
+
+  .site-header {
+    background: var(--surface-2);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; color: var(--text-primary); }
+  .logo-heart {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: #f06292;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 15px;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    font-size: 13px; padding: 5px 10px; border-radius: var(--radius);
+    color: var(--text-secondary); cursor: pointer; border: none; background: none;
+    transition: background 0.15s;
+  }
+  .nav-link:hover { background: var(--surface-1); color: var(--text-primary); }
+  .nav-link.active { background: var(--surface-1); color: var(--text-primary); font-weight: 500; }
+
+  .hero {
+    background: var(--surface-1);
+    border-bottom: 0.5px solid var(--border);
+    padding: 2rem 1.5rem 1.75rem;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #fce4ec; color: #c2185b;
+    font-size: 11px; font-weight: 500; padding: 3px 10px;
+    border-radius: 20px; margin-bottom: 12px;
+  }
+  .hero h1 { font-size: 22px; font-weight: 500; margin-bottom: 6px; }
+  .hero p { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+  .search-wrap {
+    display: flex; align-items: center; gap: 8px;
+    max-width: 440px; margin: 0 auto;
+    background: var(--surface-2); border: 0.5px solid var(--border-strong);
+    border-radius: 10px; padding: 0 12px; height: 40px;
+  }
+  .search-wrap i { color: var(--text-muted); font-size: 16px; }
+  .search-wrap input {
+    flex: 1; border: none; background: none; outline: none;
+    font-size: 14px; color: var(--text-primary);
+  }
+  .search-wrap input::placeholder { color: var(--text-muted); }
+  .search-hint { display: flex; gap: 8px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+  .search-tag {
+    font-size: 12px; color: var(--text-accent); background: var(--bg-accent);
+    border-radius: 20px; padding: 2px 10px; cursor: pointer;
+  }
+
+  .main { max-width: 680px; margin: 0 auto; padding: 1.25rem 1rem 2rem; }
+
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 10px; }
+  .guide-card {
+    background: var(--surface-2); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 14px;
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .guide-card:hover { border-color: var(--border-strong); }
+  .card-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; margin-bottom: 10px;
+  }
+  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+  .pink-icon { background: #fce4ec; }
+  .blue-icon { background: #e3f2fd; }
+  .green-icon { background: #e8f5e9; }
+  .amber-icon { background: #fff8e1; }
+  .purple-icon { background: #f3e5f5; }
+  .teal-icon { background: #e0f2f1; }
+
+  .tip-list { display: flex; flex-direction: column; gap: 8px; }
+  .tip-item {
+    background: var(--surface-2); border: 0.5px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .tip-num {
+    min-width: 20px; height: 20px; border-radius: 50%;
+    background: #f8bbd0; color: #880e4f;
+    font-size: 11px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .tip-text { font-size: 13px; line-height: 1.6; color: var(--text-primary); }
+  .tip-text strong { font-weight: 500; }
+
+  .gold-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .gold-table th {
+    text-align: left; font-weight: 500; font-size: 11px;
+    color: var(--text-muted); padding: 0 10px 8px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .gold-table td { padding: 9px 10px; border-bottom: 0.5px solid var(--border); }
+  .gold-table tr:last-child td { border-bottom: none; }
+  .gold-tag {
+    display: inline-block; font-size: 11px; font-weight: 500;
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .gold-high { background: #e8f5e9; color: #2e7d32; }
+  .gold-mid  { background: #fff8e1; color: #f57f17; }
+  .gold-low  { background: var(--surface-1); color: var(--text-secondary); }
+
+  .dg-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .dg-row {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface-2); border: 0.5px solid var(--border);
+    border-radius: 8px; padding: 8px 12px;
+  }
+  .dg-level {
+    min-width: 32px; font-size: 11px; font-weight: 500;
+    color: #c2185b; background: #fce4ec;
+    border-radius: 6px; padding: 2px 6px; text-align: center;
+  }
+  .dg-unlock { font-size: 13px; flex: 1; }
+  .dg-unlock small { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+  .footer-nav {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    padding: 1rem 1rem 0.5rem;
+    border-top: 0.5px solid var(--border);
+    margin-top: 1rem;
+  }
+  .footer-btn {
+    flex: 1; min-width: 120px; padding: 9px;
+    border: 0.5px solid var(--border); border-radius: 10px;
+    background: var(--surface-2); cursor: pointer;
+    font-size: 12px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 6px;
+    transition: border-color 0.15s;
+  }
+  .footer-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+  .footer-btn i { font-size: 16px; }
+</style>
+
+<h2 class="sr-only">Heartopia 攻略站 MVP 页面，包含搜索、新手指南、打金速查等模块</h2>
+
+<div class="site-header">
+  <div class="logo">
+    <div class="logo-heart">♡</div>
+    Heartopia 攻略
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active">首页</button>
+    <button class="nav-link">图鉴</button>
+    <button class="nav-link">地图</button>
+    <button class="nav-link">论坛</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge"><i class="ti ti-sparkles" aria-hidden="true"></i> 持续更新中</div>
+  <h1>Heartopia 全攻略</h1>
+  <p>新手入门 · 打金技巧 · 爱好图鉴 · 每日清单</p>
+  <div class="search-wrap">
+    <i class="ti ti-search" aria-hidden="true"></i>
+    <input type="text" placeholder="搜索鱼类、食谱、NPC…" id="searchInput" />
+  </div>
+  <div class="search-hint">
+    <span class="search-tag" onclick="sendPrompt('Heartopia 钓鱼攻略')">钓鱼</span>
+    <span class="search-tag" onclick="sendPrompt('Heartopia 打金速成法')">打金</span>
+    <span class="search-tag" onclick="sendPrompt('Heartopia DG等级解锁')">DG等级</span>
+    <span class="search-tag" onclick="sendPrompt('Heartopia 每日任务清单')">每日任务</span>
+    <span class="search-tag" onclick="sendPrompt('Heartopia 稀有鱼在哪里')">稀有鱼</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="section-label">核心模块</div>
+  <div class="card-grid">
+    <div class="guide-card" onclick="sendPrompt('Heartopia 新手开局完整攻略')">
+      <div class="card-icon pink-icon">🏠</div>
+      <div class="card-title">新手指南</div>
+      <div class="card-desc">开局流程、避坑要点与快速上手</div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia 每日任务和周任务详解')">
+      <div class="card-icon blue-icon">✅</div>
+      <div class="card-title">每日清单</div>
+      <div class="card-desc">日任、周任与高效日程安排</div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia 最快打金方法')">
+      <div class="card-icon amber-icon">💰</div>
+      <div class="card-title">打金攻略</div>
+      <div class="card-desc">钓鱼、种地、烹饪收益对比</div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia 钓鱼完整教程')">
+      <div class="card-icon teal-icon">🎣</div>
+      <div class="card-title">钓鱼</div>
+      <div class="card-desc">鱼种位置、天气条件与技巧</div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia 种植和烹饪攻略')">
+      <div class="card-icon green-icon">🌱</div>
+      <div class="card-title">种植 & 烹饪</div>
+      <div class="card-desc">高价值作物与食谱利润排行</div>
+    </div>
+    <div class="guide-card" onclick="sendPrompt('Heartopia 家居装饰设计技巧')">
+      <div class="card-icon purple-icon">🛋️</div>
+      <div class="card-title">家居装饰</div>
+      <div class="card-desc">风格搭配、布局技巧与家具套装</div>
+    </div>
+  </div>
+
+  <div class="section-label">新手必读 · 避坑 5 条</div>
+  <div class="tip-list">
+    <div class="tip-item">
+      <div class="tip-num">1</div>
+      <div class="tip-text"><strong>先推主线，再做其他。</strong>主线解锁约 90% 的系统，包括钓鱼、种地、载具。跑图前先把主线跑通。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">2</div>
+      <div class="tip-text"><strong>每天打日任是 DG 升级最快路线。</strong>捕 3 条鱼、浇 5 株菜只需 5 分钟，XP 收益却最高。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">3</div>
+      <div class="tip-text"><strong>别卖原材料。</strong>苹果→果酱，鱼→烹饪菜肴，加工后售价是原材料的 2–4 倍。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">4</div>
+      <div class="tip-text"><strong>用踏板车 / 轿车代步。</strong>地图很大，步行到花田要走很久。载具让行程减半，等于每天多出时间刷任务。</div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">5</div>
+      <div class="tip-text"><strong>低体力就小睡，别买体力药。</strong>睡觉免费回体，节省金币优先购置高价值种子和工具。</div>
+    </div>
+  </div>
+
+  <div class="section-label">打金速查表</div>
+  <div style="background: var(--surface-2); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden;">
+    <table class="gold-table">
+      <thead>
+        <tr>
+          <th>方式</th>
+          <th>日均收益</th>
+          <th>难度</th>
+          <th>效率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>草莓 + 玉米轮种</td>
+          <td>10万+ 金</td>
+          <td>低</td>
+          <td><span class="gold-tag gold-high">极高</span></td>
+        </tr>
+        <tr>
+          <td>彩虹天气钓鱼</td>
+          <td>数千金/场</td>
+          <td>中</td>
+          <td><span class="gold-tag gold-high">高</span></td>
+        </tr>
+        <tr>
+          <td>鱼 & 芝士蛋糕烹饪</td>
+          <td>视食材量</td>
+          <td>低</td>
+          <td><span class="gold-tag gold-high">高</span></td>
+        </tr>
+        <tr>
+          <td>果酱 / 拿铁</td>
+          <td>被动收入</td>
+          <td>极低</td>
+          <td><span class="gold-tag gold-mid">中</span></td>
+        </tr>
+        <tr>
+          <td>NPC 商店卖货</td>
+          <td>日常补充</td>
+          <td>低</td>
+          <td><span class="gold-tag gold-low">一般</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-label">DG 等级 · 关键解锁</div>
+  <div class="dg-wrap">
+    <div class="dg-row">
+      <span class="dg-level">Lv 2</span>
+      <div class="dg-unlock">解锁钓鱼 <small>导师：Vanya</small></div>
+    </div>
+    <div class="dg-row">
+      <span class="dg-level">Lv 4</span>
+      <div class="dg-unlock">解锁种植 <small>导师：Blanc</small></div>
+    </div>
+    <div class="dg-row">
+      <span class="dg-level">Lv 6</span>
+      <div class="dg-unlock">解锁捕虫 & 观鸟 <small>可选收集爱好</small></div>
+    </div>
+    <div class="dg-row">
+      <span class="dg-level">Lv 12</span>
+      <div class="dg-unlock">解锁养猫 & 养狗 <small>宠物系统开放</small></div>
+    </div>
+    <div class="dg-row">
+      <span class="dg-level">Lv 15</span>
+      <div class="dg-unlock">解锁成就系统 <small>Watch App 徽章展示</small></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-nav">
+  <button class="footer-btn" onclick="sendPrompt('帮我列一个 Heartopia 攻略站需要哪些页面')">
+    <i class="ti ti-layout-grid" aria-hidden="true"></i> 规划更多页面 ↗
+  </button>
+  <button class="footer-btn" onclick="sendPrompt('Heartopia 图鉴数据库页面怎么设计')">
+    <i class="ti ti-database" aria-hidden="true"></i> 图鉴数据库 ↗
+  </button>
+  <button class="footer-btn" onclick="sendPrompt('Heartopia 每日打卡清单页面')">
+    <i class="ti ti-checkbox" aria-hidden="true"></i> 每日打卡页 ↗
+  </button>
+</div>
+
+<script>
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.value.trim()) {
+      sendPrompt('Heartopia 攻略：' + this.value.trim());
+    }
+  });
+</script>
