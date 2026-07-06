@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Heartopia 全攻略站 — 新手指南、打金技巧、钓鱼图鉴、每日任务清单，持续更新。" />
+  <meta property="og:title" content="Heartopia 攻略 | claudechn.com" />
+  <meta property="og:description" content="新手入门 · 打金技巧 · 爱好图鉴 · 每日清单" />
+  <title>Heartopia 攻略 | claudechn.com</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♡</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pink:       #f06292;
+      --pink-light: #fce4ec;
+      --pink-dark:  #c2185b;
+      --pink-deep:  #880e4f;
+      --bg:         #f8f8f6;
+      --surface:    #ffffff;
+      --surface-2:  #f4f4f2;
+      --border:     rgba(0,0,0,0.09);
+      --border-mid: rgba(0,0,0,0.14);
+      --text:       #1a1a18;
+      --text-2:     #5a5a56;
+      --text-3:     #9a9a96;
+      --radius:     10px;
+      --accent:     #f06292;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:       #141412;
+        --surface:  #1e1e1c;
+        --surface-2:#262624;
+        --border:   rgba(255,255,255,0.08);
+        --border-mid:rgba(255,255,255,0.13);
+        --text:     #f0ede8;
+        --text-2:   #a8a49e;
+        --text-3:   #6a6660;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+                   'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Header ──────────────────────────────────────── */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600;
+      color: var(--text); text-decoration: none;
+    }
+    .logo-mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      background: var(--pink); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .nav { display: flex; gap: 2px; }
+    .nav a {
+      font-size: 13px; padding: 5px 10px; border-radius: 7px;
+      color: var(--text-2); text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav a:hover, .nav a.active {
+      background: var(--surface-2); color: var(--text);
+    }
+    .nav a.active { font-weight: 500; }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      background: var(--surface);
+      border-bottom: 0.5px solid var(--border);
+      padding: 2rem 1.25rem 1.75rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--pink-light); color: var(--pink-dark);
+      font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    @media (prefers-color-scheme: dark) {
+      .badge { background: rgba(240,98,146,0.15); color: #f48fb1; }
+    }
+    .hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      max-width: 420px; margin: 0 auto;
+      background: var(--surface-2);
+      border: 1px solid var(--border-mid);
+      border-radius: 12px; padding: 0 14px; height: 42px;
+      transition: border-color 0.15s;
+    }
+    .search-box:focus-within { border-color: var(--pink); }
+    .search-box i { color: var(--text-3); font-size: 16px; flex-shrink: 0; }
+    .search-box input {
+      flex: 1; border: none; background: none; outline: none;
+      font-size: 14px; color: var(--text);
+    }
+    .search-box input::placeholder { color: var(--text-3); }
+    .tags { display: flex; gap: 6px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+    .tag {
+      font-size: 12px; color: var(--pink-dark);
+      background: var(--pink-light);
+      border-radius: 20px; padding: 3px 10px;
+      cursor: pointer; border: none;
+      transition: opacity 0.15s;
+    }
+    @media (prefers-color-scheme: dark) {
+      .tag { background: rgba(240,98,146,0.13); color: #f48fb1; }
+    }
+    .tag:hover { opacity: 0.75; }
+
+    /* ── Layout ──────────────────────────────────────── */
+    .main {
+      max-width: 760px; margin: 0 auto;
+      padding: 1.25rem 1rem 3rem;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-3); margin: 1.75rem 0 0.75rem;
+    }
+
+    /* ── Module Cards ────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+    .guide-card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 14px;
+      cursor: pointer; text-decoration: none;
+      display: block;
+      transition: border-color 0.15s, transform 0.12s;
+    }
+    .guide-card:hover {
+      border-color: var(--border-mid);
+      transform: translateY(-1px);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; margin-bottom: 10px;
+    }
+    .ic-pink   { background: #fce4ec; }
+    .ic-blue   { background: #e3f2fd; }
+    .ic-green  { background: #e8f5e9; }
+    .ic-amber  { background: #fff8e1; }
+    .ic-purple { background: #f3e5f5; }
+    .ic-teal   { background: #e0f2f1; }
+    @media (prefers-color-scheme: dark) {
+      .ic-pink   { background: rgba(240,98,146,0.12); }
+      .ic-blue   { background: rgba(66,165,245,0.12); }
+      .ic-green  { background: rgba(76,175,80,0.12); }
+      .ic-amber  { background: rgba(255,193,7,0.12); }
+      .ic-purple { background: rgba(156,39,176,0.12); }
+      .ic-teal   { background: rgba(0,150,136,0.12); }
+    }
+    .card-title { font-size: 13px; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+    .card-desc  { font-size: 11px; color: var(--text-2); line-height: 1.5; }
+
+    /* ── Tip List ────────────────────────────────────── */
+    .tip-list { display: flex; flex-direction: column; gap: 8px; }
+    .tip-item {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .tip-num {
+      min-width: 22px; height: 22px; border-radius: 50%;
+      background: var(--pink-light); color: var(--pink-deep);
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .tip-num { background: rgba(240,98,146,0.15); color: #f48fb1; }
+    }
+    .tip-body { font-size: 13px; line-height: 1.65; color: var(--text); }
+    .tip-body strong { font-weight: 600; }
+
+    /* ── Gold Table ──────────────────────────────────── */
+    .table-wrap {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      color: var(--text-3); letter-spacing: 0.04em;
+      padding: 10px 14px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    tbody td { padding: 9px 14px; border-bottom: 0.5px solid var(--border); }
+    tbody tr:last-child td { border-bottom: none; }
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 9px; border-radius: 20px;
+    }
+    .pill-high   { background: #e8f5e9; color: #2e7d32; }
+    .pill-mid    { background: #fff8e1; color: #f57f17; }
+    .pill-normal { background: var(--surface-2); color: var(--text-2); }
+    @media (prefers-color-scheme: dark) {
+      .pill-high   { background: rgba(76,175,80,0.15); color: #a5d6a7; }
+      .pill-mid    { background: rgba(255,193,7,0.12); color: #ffe082; }
+    }
+
+    /* ── DG List ─────────────────────────────────────── */
+    .dg-list { display: flex; flex-direction: column; gap: 6px; }
+    .dg-row {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 9px; padding: 9px 12px;
+    }
+    .dg-lv {
+      min-width: 38px;
+      font-size: 11px; font-weight: 700;
+      color: var(--pink-dark); background: var(--pink-light);
+      border-radius: 6px; padding: 2px 6px; text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .dg-lv { background: rgba(240,98,146,0.13); color: #f48fb1; }
+    }
+    .dg-text { font-size: 13px; flex: 1; color: var(--text); }
+    .dg-text small { display: block; font-size: 11px; color: var(--text-3); margin-top: 1px; }
+
+    /* ── Footer Nav ──────────────────────────────────── */
+    .footer-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-top: 2.5rem; padding-top: 1.25rem;
+      border-top: 0.5px solid var(--border);
+    }
+    .footer-card {
+      flex: 1; min-width: 160px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      color: var(--text-2); font-size: 13px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .footer-card:hover { border-color: var(--border-mid); color: var(--text); }
+    .footer-card i { font-size: 16px; flex-shrink: 0; }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 1.5rem;
+      font-size: 12px; color: var(--text-3);
+      border-top: 0.5px solid var(--border);
+    }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 520px) {
+      .nav a span { display: none; }
+      .hero h1 { font-size: 22px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a class="logo" href="/">
+      <div class="logo-mark">♡</div>
+      <span>Heartopia 攻略</span>
+    </a>
+    <nav class="nav">
+      <a href="/" class="active"><span>首页</span></a>
+      <a href="#guides"><span>图鉴</span></a>
+      <a href="#gold"><span>打金</span></a>
+      <a href="#dg"><span>DG等级</span></a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">
+      <i class="ti ti-sparkles"></i> 持续更新中
+    </div>
+    <h1>Heartopia 全攻略</h1>
+    <p>新手入门 · 打金技巧 · 爱好图鉴 · 每日清单</p>
+    <div class="search-box">
+      <i class="ti ti-search"></i>
+      <input id="search" type="search" placeholder="搜索鱼类、食谱、NPC…" autocomplete="off" />
+    </div>
+    <div class="tags">
+      <button class="tag" onclick="doSearch('钓鱼')">钓鱼</button>
+      <button class="tag" onclick="doSearch('打金')">打金</button>
+      <button class="tag" onclick="doSearch('DG等级')">DG 等级</button>
+      <button class="tag" onclick="doSearch('每日任务')">每日任务</button>
+      <button class="tag" onclick="doSearch('稀有鱼')">稀有鱼</button>
+      <button class="tag" onclick="doSearch('家居装饰')">家居装饰</button>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- 核心模块 -->
+    <div class="section-label" id="guides">核心模块</div>
+    <div class="card-grid">
+      <a class="guide-card" href="#tips">
+        <div class="card-icon ic-pink">🏠</div>
+        <div class="card-title">新手指南</div>
+        <div class="card-desc">开局流程、避坑要点与快速上手</div>
+      </a>
+      <a class="guide-card" href="#daily">
+        <div class="card-icon ic-blue">✅</div>
+        <div class="card-title">每日清单</div>
+        <div class="card-desc">日任、周任与高效日程安排</div>
+      </a>
+      <a class="guide-card" href="#gold">
+        <div class="card-icon ic-amber">💰</div>
+        <div class="card-title">打金攻略</div>
+        <div class="card-desc">钓鱼、种地、烹饪收益对比</div>
+      </a>
+      <a class="guide-card" href="#fishing">
+        <div class="card-icon ic-teal">🎣</div>
+        <div class="card-title">钓鱼</div>
+        <div class="card-desc">鱼种位置、天气条件与技巧</div>
+      </a>
+      <a class="guide-card" href="#farm">
+        <div class="card-icon ic-green">🌱</div>
+        <div class="card-title">种植 & 烹饪</div>
+        <div class="card-desc">高价值作物与食谱利润排行</div>
+      </a>
+      <a class="guide-card" href="#deco">
+        <div class="card-icon ic-purple">🛋️</div>
+        <div class="card-title">家居装饰</div>
+        <div class="card-desc">风格搭配、布局技巧与家具套装</div>
+      </a>
+    </div>
+
+    <!-- 新手避坑 -->
+    <div class="section-label" id="tips">新手必读 · 避坑 5 条</div>
+    <div class="tip-list">
+      <div class="tip-item">
+        <div class="tip-num">1</div>
+        <div class="tip-body">
+          <strong>先推主线，再做其他。</strong>主线解锁约 90% 的系统，包括钓鱼、种地、载具。跑图探索前先把主线跑通。
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">2</div>
+        <div class="tip-body">
+          <strong>每天打日任是 DG 升级最快路线。</strong>捕 3 条鱼、浇 5 株菜只需 5 分钟，但 XP 收益却最高，时间有限优先日任。
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">3</div>
+        <div class="tip-body">
+          <strong>别卖原材料。</strong>苹果→果酱，鱼→烹饪菜肴，加工后售价是原材料的 2–4 倍，收益差距极大。
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">4</div>
+        <div class="tip-body">
+          <strong>用踏板车或轿车代步。</strong>地图很大，步行到花田漫长无比。载具让行程减半，等于每天多刷更多任务。
+        </div>
+      </div>
+      <div class="tip-item">
+        <div class="tip-num">5</div>
+        <div class="tip-body">
+          <strong>低体力就小睡，别买体力药。</strong>睡觉免费回体，省下金币优先购置高价值种子和工具升级。
+        </div>
+      </div>
+    </div>
+
+    <!-- 打金速查 -->
+    <div class="section-label" id="gold">打金速查表</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>方式</th>
+            <th>日均收益</th>
+            <th>门槛</th>
+            <th>效率</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>草莓 + 玉米轮种</td>
+            <td>10 万+ 金</td>
+            <td>低</td>
+            <td><span class="pill pill-high">极高</span></td>
+          </tr>
+          <tr>
+            <td>彩虹天气钓鱼</td>
+            <td>数千金 / 场</td>
+            <td>中</td>
+            <td><span class="pill pill-high">高</span></td>
+          </tr>
+          <tr>
+            <td>鱼 & 芝士蛋糕烹饪</td>
+            <td>视食材量</td>
+            <td>低</td>
+            <td><span class="pill pill-high">高</span></td>
+          </tr>
+          <tr>
+            <td>果酱 / 拿铁</td>
+            <td>被动收入</td>
+            <td>极低</td>
+            <td><span class="pill pill-mid">中</span></td>
+          </tr>
+          <tr>
+            <td>NPC 商店卖货</td>
+            <td>日常补充</td>
+            <td>低</td>
+            <td><span class="pill pill-normal">一般</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DG等级 -->
+    <div class="section-label" id="dg">DG 等级 · 关键解锁</div>
+    <div class="dg-list">
+      <div class="dg-row">
+        <span class="dg-lv">Lv 2</span>
+        <div class="dg-text">解锁钓鱼 <small>导师：Vanya</small></div>
+      </div>
+      <div class="dg-row">
+        <span class="dg-lv">Lv 4</span>
+        <div class="dg-text">解锁种植 <small>导师：Blanc</small></div>
+      </div>
+      <div class="dg-row">
+        <span class="dg-lv">Lv 5</span>
+        <div class="dg-text">解锁烹饪 <small>导师：Massimo</small></div>
+      </div>
+      <div class="dg-row">
+        <span class="dg-lv">Lv 6</span>
+        <div class="dg-text">解锁捕虫 & 观鸟 <small>可选收集爱好</small></div>
+      </div>
+      <div class="dg-row">
+        <span class="dg-lv">Lv 12</span>
+        <div class="dg-text">解锁养猫 & 养狗 <small>宠物系统开放</small></div>
+      </div>
+      <div class="dg-row">
+        <span class="dg-lv">Lv 15</span>
+        <div class="dg-text">解锁成就系统 <small>Watch App 徽章展示</small></div>
+      </div>
+    </div>
+
+    <!-- Footer Nav -->
+    <div class="footer-nav">
+      <a class="footer-card" href="#guides">
+        <i class="ti ti-layout-grid"></i>
+        全部攻略模块
+      </a>
+      <a class="footer-card" href="#gold">
+        <i class="ti ti-coin"></i>
+        打金速查
+      </a>
+      <a class="footer-card" href="#dg">
+        <i class="ti ti-trophy"></i>
+        DG 等级一览
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>claudechn.com &nbsp;·&nbsp; Heartopia 非官方攻略站 &nbsp;·&nbsp; 持续更新</p>
+  </footer>
+
+  <script>
+    // 搜索框回车跳转（占位逻辑，后续可接真实搜索）
+    function doSearch(keyword) {
+      document.getElementById('search').value = keyword;
+      document.getElementById('search').focus();
+    }
+    document.getElementById('search').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && this.value.trim()) {
+        const q = encodeURIComponent('Heartopia ' + this.value.trim() + ' 攻略');
+        window.open('https://www.google.com/search?q=' + q, '_blank');
+      }
+    });
+
+    // 导航高亮
+    const sections = document.querySelectorAll('[id]');
+    const navLinks = document.querySelectorAll('.nav a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
